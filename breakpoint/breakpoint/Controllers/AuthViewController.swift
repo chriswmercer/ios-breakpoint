@@ -12,8 +12,12 @@ class AuthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
+    @IBAction func facebookButtonPressed(_ sender: Any) {
+    }
+    
+    
+    @IBAction func googleButtonPressed(_ sender: Any) {
+    }
 }

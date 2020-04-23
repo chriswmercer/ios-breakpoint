@@ -22,6 +22,7 @@ class AuthService {
             let userData = ["provider" : user.providerID,
                             "email" : user.email]
             DataService.instance.createDBUser(uid: user.uid, userData: userData as Dictionary<String, Any>)
+            completion(true, nil)
         }
     }
     
@@ -33,6 +34,15 @@ class AuthService {
             }
             
             completion(true, nil)
+        }
+    }
+    
+    func logoutUser() {
+        do
+        {
+            try Auth.auth().signOut()
+        } catch {
+            debugPrint(String(describing: error.localizedDescription))
         }
     }
 }
