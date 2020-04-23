@@ -11,3 +11,6 @@ import Foundation
 //storyboard IDs
 let STORYBOARD_ID_AUTH = "AuthViewController"
 let STORYBOARD_ID_LOGIN = "LoginViewController"
+
+//misc
+let TEXT_POST_PLACEHOLDER = "Write something here..."

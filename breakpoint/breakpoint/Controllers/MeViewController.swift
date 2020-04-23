@@ -19,6 +19,7 @@ class MeViewController: UIViewController {
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
-
+        AuthService.instance.logoutUser()
+        dismiss(animated: false, completion: nil)
     }
 }

@@ -18,6 +18,7 @@
 		6E6F3A582451CEAB0049CD12 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F3A572451CEAB0049CD12 /* Constants.swift */; };
 		6E6F3A5A2451EE9C0049CD12 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F3A592451EE9C0049CD12 /* MeViewController.swift */; };
 		6E6F3A5C2451F0E20049CD12 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F3A5B2451F0E20049CD12 /* RootViewController.swift */; };
+		6E6F3A5E245208CE0049CD12 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F3A5D245208CE0049CD12 /* PostViewController.swift */; };
 		6E9EE90D24508D8800E132E9 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9EE90C24508D8800E132E9 /* DataService.swift */; };
 		6E9EE90F2450BFAA00E132E9 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9EE90E2450BFAA00E132E9 /* AuthViewController.swift */; };
 		6E9EE9112450BFEF00E132E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9EE9102450BFEF00E132E9 /* LoginViewController.swift */; };
@@ -42,6 +43,7 @@
 		6E6F3A572451CEAB0049CD12 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6E6F3A592451EE9C0049CD12 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		6E6F3A5B2451F0E20049CD12 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		6E6F3A5D245208CE0049CD12 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		6E9EE90C24508D8800E132E9 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		6E9EE90E2450BFAA00E132E9 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		6E9EE9102450BFEF00E132E9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				6E3538D42450806400F6E79D /* GroupsViewController.swift */,
 				6E9EE9102450BFEF00E132E9 /* LoginViewController.swift */,
 				6E6F3A592451EE9C0049CD12 /* MeViewController.swift */,
+				6E6F3A5D245208CE0049CD12 /* PostViewController.swift */,
 				6E6F3A5B2451F0E20049CD12 /* RootViewController.swift */,
 			);
 			path = Controllers;
@@ -278,6 +281,7 @@
 			files = (
 				6E9EE9152450C32A00E132E9 /* ShadowView.swift in Sources */,
 				6E6F3A582451CEAB0049CD12 /* Constants.swift in Sources */,
+				6E6F3A5E245208CE0049CD12 /* PostViewController.swift in Sources */,
 				6E9EE9112450BFEF00E132E9 /* LoginViewController.swift in Sources */,
 				6E9EE90F2450BFAA00E132E9 /* AuthViewController.swift in Sources */,
 				6E6F3A5C2451F0E20049CD12 /* RootViewController.swift in Sources */,

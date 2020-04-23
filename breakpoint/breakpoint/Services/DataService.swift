@@ -19,23 +19,32 @@ class DataService {
     private var _REF_GROUPS = BaseDB.child("groups")
     private var _REF_FEED = BaseDB.child("feed")
     
-    var REF_BASE: DatabaseReference {
+    private var REF_BASE: DatabaseReference {
         return _REF_BASE
     }
     
-    var REF_USERS: DatabaseReference {
+    private var REF_USERS: DatabaseReference {
         return _REF_USERS
     }
     
-    var REF_GROUPS: DatabaseReference {
+    private var REF_GROUPS: DatabaseReference {
         return _REF_GROUPS
     }
     
-    var REF_FEED: DatabaseReference {
+    private var REF_FEED: DatabaseReference {
         return _REF_FEED
     }
     
     func createDBUser(uid: String, userData: Dictionary<String, Any>) {
         REF_USERS.child(uid).updateChildValues(userData)
+    }
+    
+    func uploadPost(withMessage message: String, forUID uid: String, withGroupKey groupKey: String?, completion: @escaping (_ status: Bool) -> ()) {
+        if groupKey != nil {
+            
+        } else {
+            REF_FEED.childByAutoId().updateChildValues(["content" : "message", "senderid" : uid])
+            completion(true)
+        }
     }
 }
