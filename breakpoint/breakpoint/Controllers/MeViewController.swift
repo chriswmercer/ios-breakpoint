@@ -20,6 +20,7 @@ class MeViewController: UIViewController {
     
     @IBAction func logoutPressed(_ sender: Any) {
         AuthService.instance.logoutUser()
-        dismiss(animated: false, completion: nil)
+        let authVC = self.storyboard?.instantiateViewController(withIdentifier: STORYBOARD_ID_AUTH) as? AuthViewController
+        self.present(authVC!, animated: true, completion: nil)
     }
 }

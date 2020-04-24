@@ -30,14 +30,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if username != "" && password != "" {
             AuthService.instance.loginUser(withEmail: username, andPassword: password) { (success, error) in
                 if success {
-                    self.dismiss(animated: true, completion: nil)
+                    self.hasLoggedIn()
                 } else {
                     print(String(describing: error?.localizedDescription))
                     
                     AuthService.instance.registerUser(withEmail: username, andPassword: password) { (sucecss, error) in
                         if success {
                             AuthService.instance.loginUser(withEmail: username, andPassword: password) { (success, nil) in
-                                self.dismiss(animated: true, completion: nil)
+                                self.hasLoggedIn()
                             }
                         } else {
                             debugPrint("Error: ", String(describing: error))
@@ -45,6 +45,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             }
+        }
+    }
+    
+    func hasLoggedIn() {
+        self.dismiss(animated: true) {
+            NotificationCenter.default.post(name: NSNotification.Name(NOTIFY_USER_LOGGED_IN), object: nil)
         }
     }
 }

@@ -8,13 +8,47 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
-
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+   
+    var messages = [Message]()
+    
+    @IBOutlet weak var feedTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        feedTable.delegate = self
+        feedTable.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(messagesUpdated), name: NSNotification.Name(NOTIFY_MESSAGES_CHANGED), object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateMessages()
     }
 
-
+    @objc func messagesUpdated() {
+        updateMessages()
+    }
+    
+    private func updateMessages() {
+        DataService.instance.getAllFeedMessage(handler: { (returnedMessages) in
+            self.messages = returnedMessages
+            self.feedTable.reloadData()
+        })
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UI_FEED_TABLE_CELL_ID) as? FeedTableViewCell else { return UITableViewCell() }
+        
+        let image = UIImage.init(named: "defaultProfileImage")!
+        let message = messages[indexPath.row]
+        cell.setupCell(profileImage: image, userEmail: message.senderID, content: message.content)
+        return cell
+    }
+    
 }
 

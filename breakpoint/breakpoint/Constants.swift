@@ -12,5 +12,12 @@ import Foundation
 let STORYBOARD_ID_AUTH = "AuthViewController"
 let STORYBOARD_ID_LOGIN = "LoginViewController"
 
+//ui  pieces
+let UI_FEED_TABLE_CELL_ID = "feedTableViewCell"
+
+//notifications
+let NOTIFY_USER_LOGGED_IN = "userLoggedIn"
+let NOTIFY_MESSAGES_CHANGED = "messagesChanged"
+
 //misc
 let TEXT_POST_PLACEHOLDER = "Write something here..."

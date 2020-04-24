@@ -14,11 +14,12 @@ class PostViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var postText: UITextView!
-    
+    @IBOutlet weak var sendButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         postText.delegate = self
+        sendButton.bindToKeyboard()
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

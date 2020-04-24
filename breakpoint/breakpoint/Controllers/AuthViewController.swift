@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class AuthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(userLoggedIn), name: NSNotification.Name(NOTIFY_USER_LOGGED_IN), object: nil)
     }
 
     @IBAction func facebookButtonPressed(_ sender: Any) {
@@ -19,5 +21,9 @@ class AuthViewController: UIViewController {
     
     
     @IBAction func googleButtonPressed(_ sender: Any) {
+    }
+    
+    @objc func userLoggedIn() {
+        dismiss(animated: true, completion: nil)
     }
 }
