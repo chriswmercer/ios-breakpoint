@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MeViewController: UIViewController {
 
@@ -18,9 +19,20 @@ class MeViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.profileEmail.text = Auth.auth().currentUser?.email ?? "?"
+    }
+    
     @IBAction func logoutPressed(_ sender: Any) {
-        AuthService.instance.logoutUser()
-        let authVC = self.storyboard?.instantiateViewController(withIdentifier: STORYBOARD_ID_AUTH) as? AuthViewController
-        self.present(authVC!, animated: true, completion: nil)
+        let logoutPopup = UIAlertController(title: "Logout?", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
+        let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { (buttonTapped) in
+            AuthService.instance.logoutUser()
+            let authVC = self.storyboard?.instantiateViewController(withIdentifier: STORYBOARD_ID_AUTH) as? AuthViewController
+            authVC!.modalPresentationStyle = .fullScreen
+            self.present(authVC!, animated: true, completion: nil)
+        }
+        logoutPopup.addAction(logoutAction)
+        present(logoutPopup, animated: true, completion: nil)
     }
 }

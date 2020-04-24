@@ -20,6 +20,9 @@ class PostViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         postText.delegate = self
         sendButton.bindToKeyboard()
+        DataService.instance.getUsername(forUID: Auth.auth().currentUser!.uid) { (email) in
+            self.usernameLabel.text = email
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

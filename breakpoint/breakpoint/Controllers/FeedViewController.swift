@@ -32,7 +32,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private func updateMessages() {
         DataService.instance.getAllFeedMessage(handler: { (returnedMessages) in
-            self.messages = returnedMessages
+            self.messages = returnedMessages.reversed()
             self.feedTable.reloadData()
         })
     }
@@ -46,7 +46,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let image = UIImage.init(named: "defaultProfileImage")!
         let message = messages[indexPath.row]
-        cell.setupCell(profileImage: image, userEmail: message.senderID, content: message.content)
+        
+        DataService.instance.getUsername(forUID: message.senderID) { (username) in
+            cell.setupCell(profileImage: image, userId: message.senderID, content: message.content)
+        }
+        
         return cell
     }
     

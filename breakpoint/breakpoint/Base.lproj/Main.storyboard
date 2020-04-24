@@ -480,7 +480,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="JfT-pm-lbi" kind="presentation" id="KFU-Ti-PCK"/>
+                                                    <segue destination="JfT-pm-lbi" kind="presentation" modalPresentationStyle="fullScreen" id="KFU-Ti-PCK"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -519,7 +519,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="JfT-pm-lbi" customClass="LoginViewController" customModule="Breakpoint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E6y-p4-x62">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGD-Oz-FLY">

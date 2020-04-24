@@ -160,8 +160,8 @@
 		6E3538E82450810000F6E79D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				6E9EE90C24508D8800E132E9 /* DataService.swift */,
 				6E6F3A552451A3FE0049CD12 /* AuthService.swift */,
+				6E9EE90C24508D8800E132E9 /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

@@ -22,9 +22,11 @@ class FeedTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func setupCell(profileImage: UIImage, userEmail: String, content: String) {
-        self.profileImageView.image = profileImage
-        self.usernameView.text = userEmail
-        self.feedContent.text = content
+    func setupCell(profileImage: UIImage, userId: String, content: String) {
+        DataService.instance.getUsername(forUID: userId) { (username) in
+            self.profileImageView.image = profileImage
+            self.usernameView.text = username
+            self.feedContent.text = content
+        }
     }
 }

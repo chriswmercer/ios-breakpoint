@@ -60,8 +60,18 @@ class DataService {
                 let newMessage = Message(content: content, senderId: senderId)
                 messages.append(newMessage)
             }
-            
             handler(messages)
+        }
+    }
+    
+    func getUsername(forUID uid: String, handler: @escaping (_ username: String) -> ()) {
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            guard let users = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            for user in users {
+                if user.key == uid {
+                    handler(user.childSnapshot(forPath: "email").value as! String)
+                }
+            }
         }
     }
 }
