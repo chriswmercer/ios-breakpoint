@@ -429,14 +429,49 @@
                                         <rect key="frame" x="0.0" y="246" width="335" height="331"/>
                                         <color key="backgroundColor" red="0.25490196079999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="peopleAddTableCell" rowHeight="60" id="DZg-aA-rv6">
-                                                <rect key="frame" x="0.0" y="28" width="335" height="60"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="peopleAddTableCell" rowHeight="75" id="DZg-aA-rv6" customClass="UserTableViewCell" customModule="Breakpoint" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="335" height="75"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DZg-aA-rv6" id="h1x-cW-AP2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="75"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="c9Y-W5-GW6">
+                                                            <rect key="frame" x="9" y="11" width="53" height="53"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="53" id="SUv-XJ-GWh"/>
+                                                                <constraint firstAttribute="width" constant="53" id="m3b-Hw-3ic"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="user@breakpoint.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DRe-zA-Lk5">
+                                                            <rect key="frame" x="86" y="27" width="192" height="21"/>
+                                                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="GLh-vz-5UO">
+                                                            <rect key="frame" x="302" y="23" width="18" height="29"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="c9Y-W5-GW6" secondAttribute="bottom" constant="11" id="Hs5-vn-CYW"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="GLh-vz-5UO" secondAttribute="bottom" constant="12" id="JL4-db-fw3"/>
+                                                        <constraint firstItem="GLh-vz-5UO" firstAttribute="trailing" secondItem="h1x-cW-AP2" secondAttribute="trailingMargin" id="Lx6-jz-GK5"/>
+                                                        <constraint firstItem="GLh-vz-5UO" firstAttribute="top" secondItem="h1x-cW-AP2" secondAttribute="topMargin" constant="12" id="Ovo-Xu-z2a"/>
+                                                        <constraint firstItem="DRe-zA-Lk5" firstAttribute="leading" secondItem="c9Y-W5-GW6" secondAttribute="trailing" constant="24" id="SqX-3D-PjW"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="DRe-zA-Lk5" secondAttribute="bottom" constant="16" id="Wpm-Yj-vVc"/>
+                                                        <constraint firstItem="DRe-zA-Lk5" firstAttribute="top" secondItem="h1x-cW-AP2" secondAttribute="topMargin" constant="16" id="YZ8-79-Njt"/>
+                                                        <constraint firstItem="GLh-vz-5UO" firstAttribute="leading" secondItem="DRe-zA-Lk5" secondAttribute="trailing" constant="24" id="m1h-Ag-LnA"/>
+                                                        <constraint firstItem="c9Y-W5-GW6" firstAttribute="top" secondItem="h1x-cW-AP2" secondAttribute="top" constant="11" id="pKu-ex-QUI"/>
+                                                        <constraint firstItem="c9Y-W5-GW6" firstAttribute="leading" secondItem="h1x-cW-AP2" secondAttribute="leading" constant="9" id="s1Q-rx-rm6"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" red="0.16078431369999999" green="0.16862745100000001" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.25490196079999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <outlet property="checkmark" destination="GLh-vz-5UO" id="Mw6-5L-TdV"/>
+                                                    <outlet property="emailAddress" destination="DRe-zA-Lk5" id="ONe-te-0QX"/>
+                                                    <outlet property="profileImage" destination="c9Y-W5-GW6" id="dHd-9u-dz7"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -799,7 +834,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-4" y="-8"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.015686274510000001" green="0.6705882353" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
@@ -816,5 +851,6 @@
         <image name="logoutIcon" width="19" height="21"/>
         <image name="me-tabIcon" width="25" height="25"/>
         <image name="send" width="29" height="29"/>
+        <image name="whiteCheckmark" width="18" height="14"/>
     </resources>
 </document>

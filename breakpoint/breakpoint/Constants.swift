@@ -14,6 +14,7 @@ let STORYBOARD_ID_LOGIN = "LoginViewController"
 
 //ui  pieces
 let UI_FEED_TABLE_CELL_ID = "feedTableViewCell"
+let UI_GROUP_ADD_PEOPLE_CELL_ID = "peopleAddTableCell"
 
 //notifications
 let NOTIFY_USER_LOGGED_IN = "userLoggedIn"

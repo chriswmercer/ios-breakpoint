@@ -33,11 +33,13 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UI_GROUP_ADD_PEOPLE_CELL_ID) as? UserTableViewCell else { return UITableViewCell() }
+        cell.configure(profileImage: UIImage(named: "defaultProfileImage")!, email: "test@potato.com", isSelected: true)
+        return cell
     }
     
 }
