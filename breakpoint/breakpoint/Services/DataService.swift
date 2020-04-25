@@ -75,6 +75,35 @@ class DataService {
         }
     }
     
+    func getEmails(forGroup group: Group, handler: @escaping (_ emailArary: [String]) -> ()) {
+        var emailArray = [String]()
+        REF_USERS.observeSingleEvent(of: .value) { (snapper) in
+            guard let users = snapper.children.allObjects as? [DataSnapshot] else { return }
+            for user in users {
+                if group.members.contains(user.key) {
+                    let email = user.childSnapshot(forPath: "email").value as! String
+                    emailArray.append(email)
+                }
+            }
+            handler(emailArray)
+        }
+    }
+    
+    func getUIDs(forEMails emails: [String], handler: @escaping (_ complete: [String]) -> ()) {
+        if emails.count == 0 { return }
+        REF_USERS.observeSingleEvent(of: .value) { (usersSnapshot) in
+            guard let users = usersSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            var idArray = [String]()
+            for user in users {
+                guard let inspectingUserEmail = user.childSnapshot(forPath: "email").value as? String else { continue }
+                if emails.contains(inspectingUserEmail) {
+                    idArray.append(user.key)
+                }
+            }
+            handler(idArray)
+        }
+    }
+    
     func getEmail(forSearchQuery query: String, results: @escaping (_ users: [String]) -> ()) {
         var emails = [String]()
         
@@ -87,6 +116,29 @@ class DataService {
                 }
             }
             results(emails)
+        }
+    }
+    
+    func createGroup(withTitle title: String, andDescription description: String, forUserIds ids: [String], complete: @escaping (Bool) -> ()) {
+        REF_GROUPS.childByAutoId().updateChildValues(["title" : title, "description": description, "members": ids])
+        complete(true)
+    }
+    
+    func getAllGroups(handler: @escaping (_ groups: [Group]) -> ()) {
+        var groupsToReturn = [Group]()
+        
+        REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapshot) in
+            guard let groupsSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            
+            for group in groupsSnapshot {
+                guard let groupName = group.childSnapshot(forPath: "title").value as? String else { continue }
+                guard let groupDesc = group.childSnapshot(forPath: "description").value as? String else { continue }
+                guard let members = group.childSnapshot(forPath: "members").value as? [String] else { continue }
+                let groupToReturn = Group(name: groupName, description: groupDesc, members: members)
+                groupsToReturn.append(groupToReturn)
+            }
+            
+            handler(groupsToReturn)
         }
     }
 }

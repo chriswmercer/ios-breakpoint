@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
@@ -40,6 +41,21 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func doneWasPressed(_ sender: Any) {
+        guard let title = titleText.text , titleText.text != "" else { return }
+        guard let descripton = descriptionText.text, descriptionText.text != "" else { return }
+        DataService.instance.getUIDs(forEMails: selectedUsers) { (uids) in
+            var userIds: [String] = uids
+            let currentUID = Auth.auth().currentUser!.uid
+            userIds.append(currentUID)
+            DataService.instance.createGroup(withTitle: title, andDescription: descripton, forUserIds: userIds) { (success) in
+                if success {
+                    NotificationCenter.default.post(name: NSNotification.Name(NOTIFY_GROUPS_CHANGED), object: nil)
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    debugPrint("Group could not be created")
+                }
+            }
+        }
     }
 
     @objc func peopleValueChange() {
