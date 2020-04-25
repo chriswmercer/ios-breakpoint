@@ -23,15 +23,15 @@ class DataService {
         return _REF_BASE
     }
     
-    private var REF_USERS: DatabaseReference {
+    var REF_USERS: DatabaseReference {
         return _REF_USERS
     }
     
-    private var REF_GROUPS: DatabaseReference {
+    var REF_GROUPS: DatabaseReference {
         return _REF_GROUPS
     }
     
-    private var REF_FEED: DatabaseReference {
+    var REF_FEED: DatabaseReference {
         return _REF_FEED
     }
     
@@ -41,7 +41,8 @@ class DataService {
     
     func uploadPost(withMessage message: String, forUID uid: String, withGroupKey groupKey: String?, completion: @escaping (_ status: Bool) -> ()) {
         if groupKey != nil {
-            
+            REF_GROUPS.child(groupKey!).child("messages").childByAutoId().updateChildValues(["content": message, "senderid" : uid])
+            completion(true)
         } else {
             REF_FEED.childByAutoId().updateChildValues(["content" : message, "senderid" : uid])
             completion(true)
@@ -134,11 +135,25 @@ class DataService {
                 guard let groupName = group.childSnapshot(forPath: "title").value as? String else { continue }
                 guard let groupDesc = group.childSnapshot(forPath: "description").value as? String else { continue }
                 guard let members = group.childSnapshot(forPath: "members").value as? [String] else { continue }
-                let groupToReturn = Group(name: groupName, description: groupDesc, members: members)
+                let groupToReturn = Group(key: group.key, name: groupName, description: groupDesc, members: members)
                 groupsToReturn.append(groupToReturn)
             }
             
             handler(groupsToReturn)
+        }
+    }
+    
+    func getAllMessagesFor(desiredGroup group: Group, handler: @escaping (_ messagesArray: [Message]) -> ()) {
+        var groupMessageArray = [Message]()
+        REF_GROUPS.child(group.key).child("messages").observeSingleEvent(of: .value) { (snapper) in
+            guard let groupSnapshot = snapper.children.allObjects as? [DataSnapshot] else { return }
+            for groupMessage in groupSnapshot {
+                guard let content = groupMessage.childSnapshot(forPath: "content").value as? String else { continue }
+                guard let senderId = groupMessage.childSnapshot(forPath: "senderid").value as? String else { continue }
+                let newMessage = Message(content: content, senderId: senderId)
+                groupMessageArray.append(newMessage)
+            }
+            handler(groupMessageArray)
         }
     }
 }

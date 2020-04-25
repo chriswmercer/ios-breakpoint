@@ -37,7 +37,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         guard let groupFeedVC = storyboard?.instantiateViewController(identifier: STORYBOARD_ID_GROUP_FEED) as? GroupFeedViewController else { return }
         let group = groups[indexPath.row]
         groupFeedVC.configure(forGroup: group)
-        present(groupFeedVC, animated: true, completion: nil)
+        presentDetail(groupFeedVC)
     }
     
     @objc private func groupInfoUpdate() {

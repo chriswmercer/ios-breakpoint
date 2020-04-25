@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class GroupFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,6 +22,8 @@ class GroupFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         senderTextView.bindToKeyboard()
         
         guard let currentGroup = group else { return }
@@ -30,6 +33,17 @@ class GroupFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             let memberList = emails.joined(separator: ", ")
             self.members.text = "members[\(memberList)]"
         }
+        
+        DataService.instance.REF_GROUPS.observe(.value) { (snapshot) in
+            DataService.instance.getAllMessagesFor(desiredGroup: self.group!) { (returnedMessage) in
+                self.messages = returnedMessage
+                self.tableView.reloadData()
+                
+                if self.messages.count > 0 {
+                    self.tableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .none, animated: true)
+                }
+            }
+        }
     }
     
     func configure(forGroup group: Group) {
@@ -37,11 +51,15 @@ class GroupFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func closeButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismissDetail()
     }
     
     @IBAction func sendButtonPressed(_ sender: Any) {
+        if messageText.text == "" { return }
         
+        DataService.instance.uploadPost(withMessage: messageText.text!, forUID: Auth.auth().currentUser!.uid, withGroupKey: group?.key) { (success) in
+            self.messageText.text = ""
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -18,6 +18,7 @@
 		6E36FB7124546512002F66C0 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E36FB7024546512002F66C0 /* Group.swift */; };
 		6E36FB7324546EEF002F66C0 /* GroupFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E36FB7224546EEF002F66C0 /* GroupFeedTableViewCell.swift */; };
 		6E36FB7524547041002F66C0 /* GroupFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E36FB7424547041002F66C0 /* GroupFeedViewController.swift */; };
+		6E36FB7724548323002F66C0 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E36FB7624548323002F66C0 /* ViewControllerExtensions.swift */; };
 		6E3D3641245311E000E19576 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3D3640245311E000E19576 /* FeedTableViewCell.swift */; };
 		6E3D36432453180500E19576 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3D36422453180500E19576 /* Message.swift */; };
 		6E3D3645245354C500E19576 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3D3644245354C500E19576 /* CreateGroupViewController.swift */; };
@@ -52,6 +53,7 @@
 		6E36FB7024546512002F66C0 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		6E36FB7224546EEF002F66C0 /* GroupFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFeedTableViewCell.swift; sourceTree = "<group>"; };
 		6E36FB7424547041002F66C0 /* GroupFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFeedViewController.swift; sourceTree = "<group>"; };
+		6E36FB7624548323002F66C0 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		6E3D3640245311E000E19576 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		6E3D36422453180500E19576 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		6E3D3644245354C500E19576 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				6E6F3A5F245231D30049CD12 /* KeyboardExtensions.swift */,
+				6E36FB7624548323002F66C0 /* ViewControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				6E36FB7324546EEF002F66C0 /* GroupFeedTableViewCell.swift in Sources */,
 				6E3D364724537FF400E19576 /* UserTableViewCell.swift in Sources */,
 				6E6F3A60245231D30049CD12 /* KeyboardExtensions.swift in Sources */,
+				6E36FB7724548323002F66C0 /* ViewControllerExtensions.swift in Sources */,
 				6E3538D12450806400F6E79D /* SceneDelegate.swift in Sources */,
 				6E3D3645245354C500E19576 /* CreateGroupViewController.swift in Sources */,
 				6E6F3A562451A3FE0049CD12 /* AuthService.swift in Sources */,

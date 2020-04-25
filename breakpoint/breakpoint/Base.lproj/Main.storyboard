@@ -891,7 +891,7 @@
         <!--Group Feed View Controller-->
         <scene sceneID="8Om-wY-mgc">
             <objects>
-                <viewController storyboardIdentifier="groupFeedViewController" id="K3g-0u-Wy7" customClass="GroupFeedViewController" customModule="Breakpoint" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="groupFeedViewController" modalPresentationStyle="fullScreen" id="K3g-0u-Wy7" customClass="GroupFeedViewController" customModule="Breakpoint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gcm-GO-bja">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -928,7 +928,7 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="24" id="ovs-Ns-sKA"/>
                                     <constraint firstAttribute="height" constant="24" id="tRQ-vO-biI"/>
                                 </constraints>
-                                <state key="normal" image="close"/>
+                                <state key="normal" image="backIcon"/>
                                 <connections>
                                     <action selector="backButtonWasPressed:" destination="4LE-4E-1Gt" eventType="touchUpInside" id="vl6-C7-wH3"/>
                                     <action selector="closeButtonPressed:" destination="K3g-0u-Wy7" eventType="touchUpInside" id="eJU-19-mQ2"/>

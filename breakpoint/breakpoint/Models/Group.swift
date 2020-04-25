@@ -13,8 +13,10 @@ class Group {
     public private(set) var description: String
     public private(set) var count: Int
     public private(set) var members: [String]
+    public private(set) var key: String
     
-    init(name: String, description: String, members: [String]) {
+    init(key: String, name: String, description: String, members: [String]) {
+        self.key = key
         self.name = name
         self.description = description
         self.members = members
