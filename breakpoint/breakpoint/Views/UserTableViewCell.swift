@@ -14,13 +14,23 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var emailAddress: UILabel!
     @IBOutlet weak var checkmark: UIImageView!
     
+    var showing = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        //checkmark.isHidden = !selected
+        if selected {
+            if showing {
+                checkmark.isHidden = true
+                showing = false
+            } else {
+                checkmark.isHidden = false
+                showing = true
+            }
+        }
     }
 
     func configure(profileImage image: UIImage, email: String, isSelected: Bool) {

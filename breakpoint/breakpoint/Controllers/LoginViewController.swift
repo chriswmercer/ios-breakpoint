@@ -12,6 +12,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: InsetTextField!
     @IBOutlet weak var passwordTextField: InsetTextField!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var error: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,19 +30,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         guard let password = passwordTextField.text else { return }
         
         if username != "" && password != "" {
+            self.activity.isHidden = false
+            self.error.isHidden = true
+            
             AuthService.instance.loginUser(withEmail: username, andPassword: password) { (success, error) in
                 if success {
                     self.hasLoggedIn()
                 } else {
-                    print(String(describing: error?.localizedDescription))
-                    
-                    AuthService.instance.registerUser(withEmail: username, andPassword: password) { (sucecss, error) in
-                        if success {
-                            AuthService.instance.loginUser(withEmail: username, andPassword: password) { (success, nil) in
-                                self.hasLoggedIn()
+                    if error != nil {
+                        let errorString = error?.localizedDescription
+                        if errorString != nil && errorString != "" {
+                            if (errorString!.contains("password is invalid")) {
+                                self.inError()
                             }
-                        } else {
-                            debugPrint("Error: ", String(describing: error))
+                        }
+                    } else {
+                        //user has possibly not registered
+                        AuthService.instance.registerUser(withEmail: username, andPassword: password) { (sucecss, error) in
+                            if error == nil {
+                                AuthService.instance.loginUser(withEmail: username, andPassword: password) { (success, nil) in
+                                    self.hasLoggedIn()
+                                }
+                            } else {
+                                self.inError()
+                                debugPrint("Error: ", String(describing: error))
+                            }
                         }
                     }
                 }
@@ -49,8 +63,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func hasLoggedIn() {
+        self.activity.isHidden = true
+        self.error.isHidden = true
         self.dismiss(animated: true) {
             NotificationCenter.default.post(name: NSNotification.Name(NOTIFY_USER_LOGGED_IN), object: nil)
         }
+    }
+    
+    func inError() {
+        self.activity.isHidden = true
+        self.error.isHidden = false
     }
 }

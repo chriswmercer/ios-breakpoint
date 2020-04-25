@@ -26,6 +26,7 @@ class MeViewController: UIViewController {
     
     @IBAction func logoutPressed(_ sender: Any) {
         let logoutPopup = UIAlertController(title: "Logout?", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { (buttonTapped) in
             AuthService.instance.logoutUser()
             let authVC = self.storyboard?.instantiateViewController(withIdentifier: STORYBOARD_ID_AUTH) as? AuthViewController
@@ -33,6 +34,7 @@ class MeViewController: UIViewController {
             self.present(authVC!, animated: true, completion: nil)
         }
         logoutPopup.addAction(logoutAction)
+        logoutPopup.addAction(cancelAction)
         present(logoutPopup, animated: true, completion: nil)
     }
 }
